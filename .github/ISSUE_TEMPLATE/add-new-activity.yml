@@ -1,0 +1,141 @@
+name: Add New Activity
+description: Request to add a new extracurricular activity to the system
+title: "Add New Activity: [ACTIVITY NAME]"
+labels: ["enhancement", "activity-management", "teacher-request"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Add New Activity Request
+        
+        Use this form to request adding a new extracurricular activity to Mergington High School's activity system.
+        
+        **Note for Developers:** This issue contains all the information needed to add a new activity to the database and ensure it appears correctly in the student interface.
+
+  - type: input
+    id: activity_name
+    attributes:
+      label: Activity Name
+      description: The official name of the new activity (this will be the display name)
+      placeholder: "e.g., Photography Club, Spanish Honor Society, Drama Club"
+    validations:
+      required: true
+
+  - type: textarea
+    id: activity_description
+    attributes:
+      label: Activity Description
+      description: A brief description of what the activity involves (will be shown to students)
+      placeholder: "Describe the activity's purpose, what students will do, and any special benefits or goals..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: activity_category
+    attributes:
+      label: Activity Category
+      description: Choose the category that best fits this activity
+      options:
+        - Sports
+        - Arts
+        - Academic
+        - Community
+        - Technology
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: schedule_days
+    attributes:
+      label: Meeting Days
+      description: Select all days when this activity meets
+      options:
+        - label: Monday
+        - label: Tuesday
+        - label: Wednesday
+        - label: Thursday
+        - label: Friday
+        - label: Saturday
+        - label: Sunday
+
+  - type: input
+    id: start_time
+    attributes:
+      label: Start Time
+      description: When does the activity start? (Use 12-hour format with AM/PM)
+      placeholder: "e.g., 3:30 PM, 7:15 AM"
+    validations:
+      required: true
+
+  - type: input
+    id: end_time
+    attributes:
+      label: End Time
+      description: When does the activity end? (Use 12-hour format with AM/PM)
+      placeholder: "e.g., 5:00 PM, 8:45 AM"
+    validations:
+      required: true
+
+  - type: input
+    id: max_participants
+    attributes:
+      label: Maximum Participants
+      description: What's the maximum number of students that can participate?
+      placeholder: "e.g., 15, 25, 30"
+    validations:
+      required: true
+
+  - type: input
+    id: supervisor_email
+    attributes:
+      label: Activity Supervisor Email
+      description: Email of the teacher/staff member supervising this activity
+      placeholder: "teacher@mergington.edu"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_requirements
+    attributes:
+      label: Additional Requirements or Notes
+      description: Any special requirements, equipment needed, or other important information
+      placeholder: "e.g., Students must provide their own art supplies, requires signed permission slip, etc."
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## For Developers
+        
+        ### Implementation Requirements:
+        1. Add the new activity to the `initial_activities` dictionary in `src/backend/database.py`
+        2. Convert the 12-hour time format to 24-hour format for `schedule_details`
+        3. Create appropriate schedule string for display
+        4. Ensure the activity appears in the correct category filter
+        5. Test that students can register for the activity
+        6. Verify capacity limits work correctly
+        
+        ### Database Structure:
+        ```python
+        "Activity Name": {
+            "description": "Activity description here",
+            "schedule": "Day(s), Start Time - End Time",
+            "schedule_details": {
+                "days": ["Day1", "Day2"],
+                "start_time": "HH:MM",  # 24-hour format
+                "end_time": "HH:MM"     # 24-hour format
+            },
+            "max_participants": number,
+            "participants": []
+        }
+        ```
+        
+        ### Testing Checklist:
+        - [ ] Activity appears in the main activities list
+        - [ ] Activity shows in correct category filter
+        - [ ] Schedule displays correctly in both 12-hour format
+        - [ ] Students can register and unregister
+        - [ ] Capacity tracking works properly
+        - [ ] Day and time filters include the new activity appropriately

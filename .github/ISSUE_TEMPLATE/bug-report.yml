@@ -1,0 +1,191 @@
+name: Bug Report
+description: Report a problem or issue with the activity system
+title: "Bug: [Brief description of the issue]"
+labels: ["bug", "teacher-request"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Bug Report
+        
+        Use this form to report problems, errors, or unexpected behavior in Mergington High School's activity system.
+        
+        **Note for Developers:** This report contains details needed to reproduce and fix the reported issue.
+
+  - type: dropdown
+    id: issue_area
+    attributes:
+      label: What Area Is Affected?
+      description: Which part of the system has the problem?
+      options:
+        - Student registration process
+        - Activity display/listing
+        - Teacher login/authentication
+        - Activity filtering (by day, time, category)
+        - Student information management
+        - Activity schedule display
+        - Capacity/participation limits
+        - Website loading/performance
+        - Mobile device compatibility
+        - Other (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: bug_description
+    attributes:
+      label: Describe the Problem
+      description: What is happening that shouldn't be happening?
+      placeholder: "Clearly describe what you're experiencing..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: What Should Happen Instead?
+      description: Describe what you expected to happen
+      placeholder: "What should the system do instead?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce the Problem
+      description: List the exact steps that lead to the problem
+      placeholder: |
+        1. Go to...
+        2. Click on...
+        3. Enter...
+        4. See error...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How Often Does This Happen?
+      description: Is this a consistent problem or does it happen sometimes?
+      options:
+        - Always (every time I try)
+        - Usually (most of the time)
+        - Sometimes (occasionally)
+        - Rarely (happened once or twice)
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device_type
+    attributes:
+      label: What Device Are You Using?
+      description: What type of device were you using when this happened?
+      options:
+        - Desktop computer
+        - Laptop computer
+        - Tablet (iPad, Android tablet, etc.)
+        - Smartphone (iPhone, Android phone, etc.)
+        - Not sure
+
+  - type: input
+    id: browser
+    attributes:
+      label: Web Browser
+      description: Which web browser were you using? (Chrome, Firefox, Safari, Edge, etc.)
+      placeholder: "e.g., Chrome, Firefox, Safari"
+
+  - type: dropdown
+    id: user_role
+    attributes:
+      label: Your Role
+      description: Were you using the system as a teacher or observing student use?
+      options:
+        - Teacher (logged in)
+        - Teacher (not logged in)
+        - Observing student use
+        - Testing as a student
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: specific_activity
+    attributes:
+      label: Specific Activity (if relevant)
+      description: If this problem involves a particular activity, which one?
+      placeholder: "e.g., Chess Club, Basketball Team"
+
+  - type: textarea
+    id: error_messages
+    attributes:
+      label: Error Messages or Unusual Text
+      description: Copy any error messages or unusual text you saw exactly as they appeared
+      placeholder: "Paste any error messages here..."
+
+  - type: dropdown
+    id: impact_level
+    attributes:
+      label: How Serious Is This Problem?
+      description: How much does this affect your ability to manage activities?
+      options:
+        - Critical (completely blocks my work)
+        - High (makes my work very difficult)
+        - Medium (inconvenient but I can work around it)
+        - Low (minor annoyance)
+        - Cosmetic (just looks wrong but doesn't affect function)
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Information
+      description: Any other details that might help understand or fix this problem
+      placeholder: "Screenshots, workarounds you've tried, when this started happening, etc."
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## For Developers
+        
+        ### Bug Investigation Checklist:
+        - [ ] **Reproduce the issue:** Follow the steps provided to confirm the bug
+        - [ ] **Check logs:** Look for any server errors or JavaScript console errors
+        - [ ] **Test across browsers:** Verify if this is browser-specific
+        - [ ] **Test on different devices:** Check if this is device/screen size specific
+        - [ ] **Check data integrity:** Verify database contains expected information
+        
+        ### Common Areas to Investigate:
+        
+        **Frontend Issues:**
+        - JavaScript errors in browser console
+        - CSS layout problems on different screen sizes
+        - API call failures or timeouts
+        - Form validation not working correctly
+        
+        **Backend Issues:**
+        - Database connection problems
+        - Data validation errors
+        - Authentication/authorization failures
+        - API endpoint errors or unexpected responses
+        
+        **Database Issues:**
+        - Missing or corrupted data
+        - Index problems affecting queries
+        - Connection timeouts or failures
+        
+        ### Debugging Tools:
+        - Browser Developer Tools (F12)
+        - FastAPI automatic documentation at `/docs`
+        - Server logs and error output
+        - MongoDB query results
+        
+        ### Testing After Fix:
+        - [ ] Verify the exact steps in the report no longer produce the error
+        - [ ] Test related functionality to ensure no regression
+        - [ ] Test on the same browser/device combination if possible
+        - [ ] Verify fix works for the specific activity mentioned (if applicable)

@@ -1,0 +1,175 @@
+name: Remove Activity
+description: Request to remove an extracurricular activity from the system
+title: "Remove Activity: [ACTIVITY NAME]"
+labels: ["enhancement", "activity-management", "teacher-request", "removal"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Remove Activity Request
+        
+        Use this form to request removal of an extracurricular activity from Mergington High School's system.
+        
+        **⚠️ Warning:** This action will remove the activity completely and unregister all current participants.
+        
+        **Note for Developers:** This issue requests complete removal of an activity from the database.
+
+  - type: dropdown
+    id: activity_to_remove
+    attributes:
+      label: Which Activity Should Be Removed?
+      description: Select the activity you want to remove from the system
+      options:
+        - Chess Club
+        - Programming Class
+        - Soccer Team
+        - Basketball Team
+        - Art Club
+        - Math Olympiad
+        - Debate Team
+        - Weekend Robotics Workshop
+        - Manga Maniacs
+        - Other (specify below)
+    validations:
+      required: true
+
+  - type: input
+    id: activity_name_custom
+    attributes:
+      label: Activity Name (if "Other" selected above)
+      description: Type the exact name of the activity if it wasn't in the dropdown
+      placeholder: "Exact activity name as it appears in the system"
+
+  - type: dropdown
+    id: removal_reason
+    attributes:
+      label: Reason for Removal
+      description: Why is this activity being removed?
+      options:
+        - Activity discontinued/no longer offered
+        - Lack of student interest
+        - Supervisor no longer available
+        - Scheduling conflicts that cannot be resolved
+        - Budget/resource constraints
+        - Activity merged with another program
+        - Temporary removal (will be re-added later)
+        - Other (explain below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: detailed_reason
+    attributes:
+      label: Detailed Explanation
+      description: Provide more details about why this activity needs to be removed
+      placeholder: "Please explain the circumstances leading to this decision..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: current_participants
+    attributes:
+      label: What Should Happen to Current Participants?
+      description: How should we handle students currently registered for this activity?
+      options:
+        - Automatically unregister all participants
+        - Send notification before removal (manual process)
+        - Transfer to similar activity (specify which one below)
+        - Contact participants individually
+    validations:
+      required: true
+
+  - type: input
+    id: transfer_activity
+    attributes:
+      label: Transfer to Activity (if applicable)
+      description: If transferring participants, which activity should they be moved to?
+      placeholder: "Name of the activity to transfer participants to"
+
+  - type: dropdown
+    id: removal_urgency
+    attributes:
+      label: When Should This Removal Take Effect?
+      description: Timeline for removing the activity
+      options:
+        - Immediately
+        - End of current week
+        - End of current month
+        - End of current trimester
+        - Specific date (provide below)
+    validations:
+      required: true
+
+  - type: input
+    id: specific_date
+    attributes:
+      label: Specific Removal Date (if applicable)
+      description: If you selected "Specific date" above, when should it be removed?
+      placeholder: "e.g., December 15, 2024"
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      description: Please confirm you understand the implications
+      options:
+        - label: I understand this will permanently remove the activity from the system
+          required: true
+        - label: I understand all current participants will be affected
+          required: true
+        - label: I have authority to request this removal
+          required: true
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes
+      description: Any other important information about this removal
+      placeholder: "Any special considerations, follow-up actions needed, etc."
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## For Developers
+        
+        ### Implementation Requirements:
+        1. **Database Changes:**
+           - Remove the activity from `initial_activities` dictionary in `src/backend/database.py`
+           - Handle any existing registrations in the live database
+        
+        2. **Data Cleanup:**
+           - Remove activity from activities collection: `activities_collection.delete_one({"_id": activity_name})`
+           - Consider creating a backup before deletion
+        
+        3. **User Impact Considerations:**
+           - Notify affected students if removal isn't immediate
+           - Ensure UI gracefully handles the missing activity
+           - Update any hardcoded references to the activity
+        
+        ### Implementation Steps:
+        1. **Pre-removal:**
+           - Document current participants if needed for notification
+           - Create backup of activity data
+           - Check for any code dependencies on this specific activity
+        
+        2. **Removal Process:**
+           - Remove from `initial_activities` in `database.py`
+           - Delete from live database if exists
+           - Test that UI handles the removal gracefully
+        
+        3. **Post-removal:**
+           - Verify activity no longer appears in any filters or lists
+           - Confirm registration endpoints return appropriate errors
+           - Test that the application still functions normally
+        
+        ### Testing Checklist:
+        - [ ] Activity no longer appears in main activities list
+        - [ ] Activity removed from all category filters
+        - [ ] Day and time filters work correctly without the activity
+        - [ ] Registration attempts for the removed activity fail gracefully
+        - [ ] No broken links or references to the removed activity
+        - [ ] Database operations complete successfully
+        - [ ] Application performance unaffected by removal

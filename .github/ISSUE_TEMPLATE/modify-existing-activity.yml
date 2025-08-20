@@ -1,0 +1,160 @@
+name: Modify Existing Activity
+description: Request changes to an existing extracurricular activity
+title: "Modify Activity: [ACTIVITY NAME]"
+labels: ["enhancement", "activity-management", "teacher-request"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Modify Existing Activity Request
+        
+        Use this form to request changes to an existing extracurricular activity in Mergington High School's system.
+        
+        **Note for Developers:** This issue contains specific change requests for an existing activity in the database.
+
+  - type: dropdown
+    id: existing_activity
+    attributes:
+      label: Which Activity Needs Changes?
+      description: Select the activity you want to modify (if not listed, type the exact name below)
+      options:
+        - Chess Club
+        - Programming Class
+        - Soccer Team
+        - Basketball Team
+        - Art Club
+        - Math Olympiad
+        - Debate Team
+        - Weekend Robotics Workshop
+        - Manga Maniacs
+        - Other (specify below)
+
+  - type: input
+    id: activity_name_custom
+    attributes:
+      label: Activity Name (if "Other" selected above)
+      description: Type the exact name of the activity if it wasn't in the dropdown
+      placeholder: "Exact activity name as it appears in the system"
+
+  - type: checkboxes
+    id: changes_requested
+    attributes:
+      label: What Changes Are Needed?
+      description: Select all the aspects that need to be modified
+      options:
+        - label: Activity name/title
+        - label: Activity description
+        - label: Schedule (days and/or times)
+        - label: Maximum number of participants
+        - label: Activity category
+        - label: Supervisor/contact information
+        - label: Remove the activity entirely
+
+  - type: input
+    id: new_name
+    attributes:
+      label: New Activity Name
+      description: Only fill this if you're changing the activity name
+      placeholder: "New name for the activity"
+
+  - type: textarea
+    id: new_description
+    attributes:
+      label: New Activity Description
+      description: Only fill this if you're changing the description
+      placeholder: "New description for what the activity involves..."
+
+  - type: checkboxes
+    id: new_schedule_days
+    attributes:
+      label: New Meeting Days
+      description: Only select if you're changing the schedule - select all days when this activity should meet
+      options:
+        - label: Monday
+        - label: Tuesday
+        - label: Wednesday
+        - label: Thursday
+        - label: Friday
+        - label: Saturday
+        - label: Sunday
+
+  - type: input
+    id: new_start_time
+    attributes:
+      label: New Start Time
+      description: Only fill this if you're changing the start time (Use 12-hour format with AM/PM)
+      placeholder: "e.g., 3:30 PM, 7:15 AM"
+
+  - type: input
+    id: new_end_time
+    attributes:
+      label: New End Time
+      description: Only fill this if you're changing the end time (Use 12-hour format with AM/PM)
+      placeholder: "e.g., 5:00 PM, 8:45 AM"
+
+  - type: input
+    id: new_max_participants
+    attributes:
+      label: New Maximum Participants
+      description: Only fill this if you're changing the participant limit
+      placeholder: "e.g., 15, 25, 30"
+
+  - type: dropdown
+    id: new_category
+    attributes:
+      label: New Activity Category
+      description: Only select if you're changing the category
+      options:
+        - No change needed
+        - Sports
+        - Arts
+        - Academic
+        - Community
+        - Technology
+
+  - type: textarea
+    id: reason_for_changes
+    attributes:
+      label: Reason for Changes
+      description: Why are these changes needed? This helps developers understand the context.
+      placeholder: "e.g., Need to accommodate more students, schedule conflict with other activities, activity focus has evolved..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes
+      description: Any other important information or special requirements
+      placeholder: "Any other details that would be helpful..."
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## For Developers
+        
+        ### Implementation Requirements:
+        1. Locate the activity in `src/backend/database.py` in the `initial_activities` dictionary
+        2. Apply only the requested changes (leave other fields unchanged)
+        3. For schedule changes, update both the display string and `schedule_details` object
+        4. Convert any time formats from 12-hour to 24-hour for database storage
+        5. If changing activity name, update the dictionary key
+        6. Verify the changes don't break existing functionality
+        
+        ### Important Considerations:
+        - **Existing participants:** Consider whether current participants should remain registered
+        - **Schedule conflicts:** Check if new schedule conflicts with other activities
+        - **Category changes:** Ensure activity still appears in correct filters
+        - **Capacity changes:** If reducing max participants, handle existing registrations appropriately
+        
+        ### Testing Checklist:
+        - [ ] Changes are reflected in the activities list
+        - [ ] Schedule displays correctly if modified
+        - [ ] Category filter works correctly if category changed
+        - [ ] Existing participants are handled appropriately
+        - [ ] New participant limits are enforced
+        - [ ] Day and time filters work with updated schedule
+        - [ ] No unintended side effects on other activities

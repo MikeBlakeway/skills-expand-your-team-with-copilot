@@ -1,0 +1,218 @@
+name: Feature Request
+description: Request a new feature or enhancement for the activity system
+title: "Feature Request: [Brief description of the feature]"
+labels: ["enhancement", "feature-request", "teacher-request"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Request
+        
+        Use this form to request new functionality or enhancements to Mergington High School's activity system.
+        
+        **Note for Developers:** This request contains detailed requirements for implementing new functionality.
+
+  - type: dropdown
+    id: feature_category
+    attributes:
+      label: What Type of Feature Is This?
+      description: What area of the system would this new feature affect?
+      options:
+        - Student registration improvements
+        - Teacher management tools
+        - Activity display/organization
+        - Reporting and analytics
+        - Communication features
+        - Mobile/accessibility improvements
+        - Data export/import
+        - Security/privacy enhancements
+        - Performance improvements
+        - Integration with other systems
+        - Other (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: feature_description
+    attributes:
+      label: Feature Description
+      description: Describe the new feature or enhancement you'd like to see
+      placeholder: "What should this new feature do? How should it work?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_solved
+    attributes:
+      label: What Problem Does This Solve?
+      description: Explain what current problem or limitation this feature would address
+      placeholder: "What challenge are you currently facing that this feature would help with?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: user_story
+    attributes:
+      label: User Story
+      description: Describe how someone would use this feature
+      placeholder: "As a [teacher/student], I want to [do something] so that [goal/benefit]..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user_type
+    attributes:
+      label: Who Would Use This Feature?
+      description: Which users would benefit from this feature?
+      options:
+        - Teachers only
+        - Students only
+        - Both teachers and students
+        - Administrators
+        - Parents/guardians
+        - All users
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: How Important Is This Feature?
+      description: What priority would you assign to this enhancement?
+      options:
+        - Critical (essential for daily operations)
+        - High (would significantly improve workflow)
+        - Medium (nice to have, would make things easier)
+        - Low (minor improvement)
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_workaround
+    attributes:
+      label: Current Workaround
+      description: How do you currently handle this need, if at all?
+      placeholder: "What do you do now to accomplish this goal? What's difficult about the current process?"
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Success Criteria
+      description: How would you know this feature is working correctly?
+      placeholder: "What specific things should happen when this feature is complete?"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: feature_examples
+    attributes:
+      label: Examples of Desired Functionality
+      description: Select any specific capabilities you'd like to see (check all that apply)
+      options:
+        - label: Email notifications to students/teachers
+        - label: Calendar integration
+        - label: Bulk operations (add/remove multiple students)
+        - label: Activity waitlists
+        - label: Attendance tracking
+        - label: Activity prerequisites or requirements
+        - label: Custom activity categories
+        - label: Student progress/achievement tracking
+        - label: Parent/guardian notifications
+        - label: Activity popularity analytics
+        - label: Schedule conflict detection
+        - label: File/document attachments to activities
+        - label: Student feedback/rating system
+        - label: Teacher collaboration tools
+        - label: Automated reminders
+        - label: Data export capabilities
+        - label: Mobile app functionality
+        - label: Dark mode/theme options
+        - label: Search and advanced filtering
+        - label: Activity archiving/history
+
+  - type: textarea
+    id: technical_suggestions
+    attributes:
+      label: Technical Suggestions (Optional)
+      description: If you have ideas about how this might be implemented, share them here
+      placeholder: "Any technical approaches, similar systems you've seen, or implementation ideas..."
+
+  - type: dropdown
+    id: timeline
+    attributes:
+      label: Desired Timeline
+      description: When would you like to see this feature implemented?
+      options:
+        - As soon as possible
+        - Within the next month
+        - Before the end of the trimester
+        - Before the next school year
+        - Flexible/no rush
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information that would help understand or implement this feature
+      placeholder: "Related features needed, budget considerations, similar systems you've used, etc."
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## For Developers
+        
+        ### Feature Analysis Framework:
+        
+        #### 1. Requirements Analysis
+        - **User story validation:** Ensure the user story follows "As a [user], I want [goal] so that [benefit]"
+        - **Scope definition:** Clearly define what's included/excluded in this feature
+        - **Dependencies:** Identify any other features or systems this depends on
+        
+        #### 2. Technical Considerations
+        - **Database changes:** Will this require new collections or schema modifications?
+        - **API changes:** What new endpoints or modifications to existing endpoints are needed?
+        - **Frontend changes:** What UI/UX components need to be added or modified?
+        - **Authentication:** Does this feature require role-based access control?
+        
+        #### 3. Implementation Approach
+        
+        **Frontend Components:**
+        - New UI elements needed in `src/static/index.html`
+        - JavaScript functionality in `src/static/app.js`
+        - CSS styling requirements
+        
+        **Backend Components:**
+        - New routes in `src/backend/routers/`
+        - Database model changes in `src/backend/database.py`
+        - Authentication/authorization requirements
+        
+        **Database Considerations:**
+        - New collections or document structure changes
+        - Data migration requirements for existing data
+        - Index requirements for performance
+        
+        #### 4. Testing Strategy
+        - **Unit tests:** What functions/methods need testing?
+        - **Integration tests:** What workflows need end-to-end testing?
+        - **User acceptance testing:** How will teachers verify the feature works?
+        
+        #### 5. Documentation Updates
+        - README updates
+        - API documentation
+        - User guides for teachers
+        
+        ### Implementation Checklist Template:
+        - [ ] Requirements clearly understood
+        - [ ] Database schema designed (if needed)
+        - [ ] API endpoints designed
+        - [ ] Frontend mockups/wireframes created
+        - [ ] Backend implementation complete
+        - [ ] Frontend implementation complete
+        - [ ] Testing completed
+        - [ ] Documentation updated
+        - [ ] Feature ready for teacher review
