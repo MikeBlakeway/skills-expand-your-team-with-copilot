@@ -112,7 +112,7 @@ Each template includes:
 4. Fill out guided form
 5. Submit for developer processing
 
-Templates are immediately available at: `https://github.com/[repo]/issues/new/choose`
+Templates are immediately available by clicking "New Issue" in your school's activity management system repository on GitHub and selecting the appropriate template.
 
 ## Files Created
 - `.github/ISSUE_TEMPLATE/add-new-activity.yml` (4,653 bytes)
