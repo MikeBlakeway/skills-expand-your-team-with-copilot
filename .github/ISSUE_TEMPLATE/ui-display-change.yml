@@ -1,0 +1,239 @@
+name: UI/Display Change
+description: Request changes to how information is displayed or how the interface looks
+title: "UI Change: [Brief description of the change]"
+labels: ["enhancement", "ui-ux", "display", "teacher-request"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## UI/Display Change Request
+        
+        Use this form to request changes to how information is displayed or how the interface looks and feels.
+        
+        **Note for Developers:** This request contains specific UI/UX requirements and design preferences.
+
+  - type: dropdown
+    id: change_area
+    attributes:
+      label: What Part of the Interface Needs Changes?
+      description: Which area of the system should be modified?
+      options:
+        - Main activities list/cards
+        - Activity details/information display
+        - Filter options (category, day, time)
+        - Search functionality
+        - Student registration forms
+        - Teacher login interface
+        - Overall page layout
+        - Colors and styling
+        - Text size and fonts
+        - Mobile device display
+        - Navigation elements
+        - Error messages and notifications
+        - Other (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_issue
+    attributes:
+      label: What's Wrong with the Current Display?
+      description: Describe what you don't like about how something currently looks or works
+      placeholder: "What makes the current interface difficult to use or understand?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: desired_change
+    attributes:
+      label: Describe Your Desired Change
+      description: How would you like it to look or behave instead?
+      placeholder: "Be as specific as possible about what you want to see..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: What Type of Change Is This?
+      description: What kind of modification are you requesting?
+      options:
+        - Information organization/layout
+        - Color scheme or visual styling
+        - Text size, fonts, or readability
+        - Button placement or design
+        - Form layout or input fields
+        - Mobile responsiveness
+        - Accessibility improvement
+        - Performance/loading display
+        - Error message clarity
+        - Navigation improvement
+        - Content organization
+        - Visual hierarchy
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user_affected
+    attributes:
+      label: Who Would Benefit from This Change?
+      description: Which users would this change help?
+      options:
+        - Teachers using the admin functions
+        - Students browsing activities
+        - Both teachers and students
+        - Users on mobile devices
+        - Users with accessibility needs
+        - All users
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: specific_improvements
+    attributes:
+      label: Specific Improvements Needed
+      description: Select any specific improvements you'd like to see (check all that apply)
+      options:
+        - label: Make text larger/more readable
+        - label: Improve color contrast
+        - label: Better organization of information
+        - label: Clearer button labels
+        - label: More intuitive navigation
+        - label: Better mobile/tablet display
+        - label: Faster loading indicators
+        - label: More obvious clickable elements
+        - label: Better error message visibility
+        - label: Simplified layout
+        - label: More visual separation between sections
+        - label: Better use of white space
+        - label: More professional appearance
+        - label: Consistent styling throughout
+        - label: Better keyboard navigation support
+
+  - type: textarea
+    id: examples_inspiration
+    attributes:
+      label: Examples or Inspiration
+      description: Do you have examples of websites or interfaces that do this well?
+      placeholder: "Links to websites, descriptions of other systems you've used, or specific design elements you like..."
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: How Important Is This Change?
+      description: What priority should this UI change have?
+      options:
+        - Critical (current interface is very hard to use)
+        - High (would significantly improve usability)
+        - Medium (noticeable improvement)
+        - Low (minor enhancement)
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_problems
+    attributes:
+      label: Current Problems This Would Solve
+      description: What specific difficulties do you or others experience with the current interface?
+      placeholder: "Are people getting confused? Having trouble finding things? Complaints you've heard?"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device_context
+    attributes:
+      label: Device Context
+      description: Is this issue more noticeable on certain devices?
+      options:
+        - All devices have this issue
+        - Mainly on desktop computers
+        - Mainly on tablets
+        - Mainly on smartphones
+        - Only on certain screen sizes
+        - Not device-specific
+    validations:
+      required: true
+
+  - type: textarea
+    id: accessibility_concerns
+    attributes:
+      label: Accessibility Considerations
+      description: Are there any accessibility concerns this change should address?
+      placeholder: "Color blindness, visual impairments, keyboard navigation, screen readers, etc."
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information about this UI change request
+      placeholder: "User feedback you've received, frequency of confusion, specific scenarios where this is problematic..."
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## For Developers
+        
+        ### UI/UX Implementation Guide:
+        
+        #### 1. Analysis Phase
+        - **Current state assessment:** Document how the current interface works
+        - **User impact analysis:** Understand who is affected and how
+        - **Device testing:** Verify the issue across different devices/browsers
+        - **Accessibility audit:** Check current accessibility compliance
+        
+        #### 2. Design Considerations
+        
+        **Responsive Design:**
+        - Ensure changes work on all screen sizes
+        - Test on mobile, tablet, and desktop
+        - Consider touch vs. mouse interaction
+        
+        **Accessibility Standards:**
+        - WCAG compliance for color contrast
+        - Keyboard navigation support
+        - Screen reader compatibility
+        - Clear focus indicators
+        
+        **Visual Hierarchy:**
+        - Important information should be most prominent
+        - Logical flow for user tasks
+        - Consistent spacing and alignment
+        
+        #### 3. Implementation Areas
+        
+        **CSS Changes (`src/static/style.css` or inline styles):**
+        - Layout modifications (flexbox, grid, positioning)
+        - Color scheme adjustments
+        - Typography improvements
+        - Responsive design updates
+        
+        **HTML Structure (`src/static/index.html`):**
+        - Element reorganization
+        - Accessibility attribute additions
+        - Semantic markup improvements
+        
+        **JavaScript Functionality (`src/static/app.js`):**
+        - Interactive behavior modifications
+        - Dynamic content updates
+        - User feedback improvements
+        
+        #### 4. Testing Checklist
+        - [ ] **Visual testing:** Changes look correct on all target devices
+        - [ ] **Functional testing:** All features still work properly
+        - [ ] **Accessibility testing:** Screen readers, keyboard navigation work
+        - [ ] **Browser compatibility:** Works in Chrome, Firefox, Safari, Edge
+        - [ ] **Mobile testing:** Responsive design functions on phones/tablets
+        - [ ] **User testing:** Teachers can easily use the updated interface
+        
+        #### 5. Common UI Patterns for School Systems
+        - **Card-based layouts** for activity listings
+        - **Clear action buttons** with descriptive text
+        - **Consistent color coding** for different types of information
+        - **Progressive disclosure** for detailed information
+        - **Clear feedback** for user actions (success/error states)
+        
+        ### Before & After Documentation
+        Remember to take screenshots of the current state before making changes, and document the final result for comparison.
